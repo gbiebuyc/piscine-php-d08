@@ -28,7 +28,13 @@ if (!isset($_SESSION['player']))
 if (!isset($_SESSION['vaisseaux'])) {
 	$_SESSION['vaisseaux'] = array();
 	$_SESSION['vaisseaux'][] = new Vaisseau1(3, 3, RIGHT, PLAYER_1);
-	$_SESSION['vaisseaux'][] = new Vaisseau1(3, 12, RIGHT, PLAYER_1);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(5, 7, RIGHT, PLAYER_1);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(3, 11, RIGHT, PLAYER_1);
+
+	$_SESSION['vaisseaux'][] = new Vaisseau1(60, 3, LEFT, PLAYER_2);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(57, 7, LEFT, PLAYER_2);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(60, 11, LEFT, PLAYER_2);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(140, 95, LEFT, PLAYER_2);
 }
 $all_activated = true;
 foreach ($_SESSION['vaisseaux'] as $v) {

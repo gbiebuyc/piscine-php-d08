@@ -1,0 +1,44 @@
+table, th, td {
+	border: 1px solid slateblue;
+	border-collapse: collapse;
+}
+
+table {
+	table-layout: fixed;
+	width: 0px;
+}
+
+td {
+	width: 17px; /* c'est carré bizarement */
+	height: 20px;
+}
+
+img {
+	position: absolute;
+}
+
+body {
+	background-color: MidnightBlue;
+}
+
+.userinput {
+	position: fixed;
+	width: 500px;
+	height: 120px;
+	bottom: 30px;
+	left: 30px;
+	background-color: rgba(128, 169, 62, 0.8);
+	border-radius: 7px;
+	box-shadow: 5px 5px 5px;
+	padding: 10px;
+}
+
+.turn {
+	position: fixed;
+	bottom: 200px;
+	left: 30px;
+	background-color: rgba(128, 169, 62, 0.8);
+	border-radius: 7px;
+	box-shadow: 5px 5px 5px;
+	padding: 10px;
+}

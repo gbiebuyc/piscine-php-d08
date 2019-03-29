@@ -21,4 +21,8 @@ class Vaisseau1 extends Vaisseau {
 		$this->w = 4;
 		$this->h = 1;
 	}
+
+	static function doc() {
+		return file_get_contents('Vaisseau1.doc.txt');
+	}
 }

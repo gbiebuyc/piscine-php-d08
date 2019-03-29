@@ -1,0 +1,10 @@
+Ceci est la Frégate Impériale
+
+Nom : "Honorable Duty"
+Taille : 1x4 cases
+Points de coque : 5
+PP : 10
+Vitesse : 15
+Manoeuvre : 4
+Bouclier : 0
+Arme : Batteries laser de flancs

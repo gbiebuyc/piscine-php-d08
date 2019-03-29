@@ -1,0 +1,1 @@
+Ceci est la classe abstraite des vaisseaux.

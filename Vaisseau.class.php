@@ -32,6 +32,10 @@ abstract class Vaisseau
 		$this->player = $player;
 	}
 
+	static function doc() {
+		return file_get_contents('Vaisseau.doc.txt');
+	}
+
 	function getCenterX() {
 		if ($this->dir == RIGHT)
 			return $this->x + ceil($this->w / 2);

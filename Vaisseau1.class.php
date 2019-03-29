@@ -1,5 +1,4 @@
 <?php
-require_once 'Arme1.class.php';
 require_once 'Vaisseau.class.php';
 
 class Vaisseau1 extends Vaisseau {
@@ -18,7 +17,7 @@ class Vaisseau1 extends Vaisseau {
 		$this->vitesse = $this->vitesse_init;
 		$this->manoeuvr = 4;
 		$this->bouclier = 0;
-		$this->arme = new Arme1();
+		//$this->arme = new Arme1();
 		$this->w = 4;
 		$this->h = 1;
 	}

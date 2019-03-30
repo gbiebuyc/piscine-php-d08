@@ -10,6 +10,7 @@ session_start();
 <div style='position: relative'>
 <?php
 
+// Display grid
 echo "<table>";
 for ($i = 0; $i < BOARD_HEIGHT; $i++) {
 	echo "<tr>";
@@ -19,6 +20,7 @@ for ($i = 0; $i < BOARD_HEIGHT; $i++) {
 }
 echo "</table>";
 
+// Init game
 if (!isset($_SESSION['gamestate']))
 	$_SESSION['gamestate'] = SELECT_SHIP;
 
@@ -36,6 +38,8 @@ if (!isset($_SESSION['vaisseaux'])) {
 	$_SESSION['vaisseaux'][] = new Vaisseau1(60, 11, LEFT, PLAYER_2);
 	$_SESSION['vaisseaux'][] = new Vaisseau1(140, 95, LEFT, PLAYER_2);
 }
+
+// Check si tous les vaisseaux sont activés
 $all_activated = true;
 foreach ($_SESSION['vaisseaux'] as $v) {
 	if ($v->player == $_SESSION['player'] && $v->activated === false) {
@@ -43,6 +47,8 @@ foreach ($_SESSION['vaisseaux'] as $v) {
 		break;
 	}
 }
+
+// Change turn, reset PP
 if ($all_activated === true) {
 	$_SESSION['player'] = ($_SESSION['player'] + 1) % 2;
 	foreach ($_SESSION['vaisseaux'] as $k => $v) {
@@ -52,6 +58,7 @@ if ($all_activated === true) {
 	}
 }
 
+// Display ships
 foreach ($_SESSION['vaisseaux'] as $k => $v) {
 	$top = $v->y * SQUARE_WIDTH;
 	$left = $v->x * SQUARE_WIDTH;

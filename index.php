@@ -34,11 +34,10 @@ if (!isset($_SESSION['vaisseaux'])) {
 	$_SESSION['vaisseaux'][] = new Vaisseau1(3, 11, RIGHT, PLAYER_1);
 
 	$_SESSION['vaisseaux'][] = new Vaisseau1(60, 3, LEFT, PLAYER_2);
-	$_SESSION['vaisseaux'][] = new Vaisseau1(57, 7, LEFT, PLAYER_2);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(10, 7, LEFT, PLAYER_2);
 	$_SESSION['vaisseaux'][] = new Vaisseau1(60, 11, LEFT, PLAYER_2);
-	$_SESSION['vaisseaux'][] = new Vaisseau1(140, 95, LEFT, PLAYER_2);
+	//$_SESSION['vaisseaux'][] = new Vaisseau1(140, 95, LEFT, PLAYER_2);
 }
-
 // Check si tous les vaisseaux sont activés
 $all_activated = true;
 foreach ($_SESSION['vaisseaux'] as $v) {
@@ -55,11 +54,14 @@ if ($all_activated === true) {
 		$_SESSION['vaisseaux'][$k]->activated = false;
 		$_SESSION['vaisseaux'][$k]->vitesse = $v->vitesse_init;
 		$_SESSION['vaisseaux'][$k]->PP = $v->PP_init;
+		if ($_SESSION['vaisseaux'][$k]->pt_coque <= 0)
+			unset($_SESSION['vaisseaux'][$k]);
 	}
 }
 
 // Display ships
 foreach ($_SESSION['vaisseaux'] as $k => $v) {
+
 	$top = $v->y * SQUARE_WIDTH;
 	$left = $v->x * SQUARE_WIDTH;
 	$width = $v->w * SQUARE_WIDTH;
@@ -98,12 +100,13 @@ if ($_SESSION['gamestate'] === SELECT_SHIP) { ?>
 	Choisissez un vaisseau svp<br>
 <?php }
 else if ($_SESSION['gamestate'] === MOVE){ ?>
-<form action="/action.php">
+<form action="./action.php">
 <?php
 	echo "<b>{$_SESSION['selected']->nom}</b><br>";
 echo 'Immobile: ' . ($_SESSION['selected']->immobile ? 'Vrai' : 'Faux') . '<br>';
 echo "Manoeuvre: {$_SESSION['selected']->manoeuvr}<br>";
 echo "Vitesse: {$_SESSION['selected']->vitesse}<br>";
+echo "coque: {$_SESSION['selected']->pt_coque}<br>";
 $min = $_SESSION['selected']->immobile ? 0 : $_SESSION['selected']->manoeuvr;
 $max = $_SESSION['selected']->vitesse;
 ?>
@@ -114,7 +117,8 @@ $max = $_SESSION['selected']->vitesse;
 if ($_SESSION['selected']->immobile) { ?>
   <input type="submit" name="action" value="Stay stationary">
   <input type="submit" name="action" value="Turn left">
-  <input type="submit" name="action" value="Turn right">
+	<input type="submit" name="action" value="Turn right">
+  <input type="submit" name="action" value="attaque">
 <?php } ?>
 </form>
 <?php } ?>

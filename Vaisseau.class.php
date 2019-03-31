@@ -108,4 +108,46 @@ abstract class Vaisseau
 		if ($this->dir == UP)
 			$this->y = $cy - floor($this->w / 2);
 	}
+	function attaque($ship){
+		if ($this->dir == RIGHT)
+		{
+			$dx = $this->x + $this->w + 1;
+			$fx = $this->x + $this->w + 5;
+			while ($dx < $fx){
+				if ($ship->x <= $dx && $dx <= $ship->x + $ship->y && $ship->y <= $this->y && $this->y <= $ship->y + $ship->h && $ship != $this)
+					$ship->pt_coque--;
+				$dx++;
+		}
+		}
+		if ($this->dir == LEFT)
+		{
+				$dx = $this->x - 1;
+				$fx = $this->x - 5;
+				while ($dx > $fx){
+					if ($ship->x <= $dx && $dx <= $ship->x + $ship->y && $ship->y <= $this->y && $this->y <= $ship->y + $ship->h && $ship != $this)
+						$ship->pt_coque--;
+					$dx--;
+			}
+		}
+			if ($this->dir == DOWN)
+			{
+					$dy = $this->y - 1;
+					$fy = $this->y - 5;
+					while ($dy > $fy){
+						if ($ship->y <= $dy && $dy <= $ship->y + $ship->y && $this->x > $ship->x  && $ship->x + $ship->h < $this->x&& $ship != $this)
+							$ship->pt_coque--;
+						$dy--;
+				}
+		}
+		if ($this->dir == UP)
+		{
+				$dy = $this->y + 1;
+				$fy = $this->y + 5;
+				while ($dy < $fy){
+					if ($ship->y <= $dy && $dy <= $ship->y + $ship->y && $this->x == $ship->x && $ship != $this)
+						$ship->pt_coque--;
+					$dy++;
+			}
+	}
+	}
 }

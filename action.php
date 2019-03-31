@@ -34,4 +34,14 @@ else if ($_GET['action'] === 'Turn left') {
 else if ($_GET['action'] === 'Turn right') {
 	$_SESSION['selected']->turn_right();
 }
+else if ($_GET['action'] === 'attaque'){
+	$_SESSION['selected']->activated = true;
+
+
+	foreach ($_SESSION['vaisseaux'] as  $ship) {
+			$_SESSION['selected']->attaque($ship);
+		}
+		unset($_SESSION['selected']);
+		$_SESSION['gamestate'] = SELECT_SHIP;
+}
 header("Location: index.php");

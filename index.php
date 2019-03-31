@@ -147,18 +147,7 @@ foreach ($_SESSION['vaisseaux'] as $k => $v) {
 <div class='userinput'>
 <?php
 if ($_SESSION['gamestate'] === SELECT_SHIP) {
-/*	if (count($_SESSION['vaisseaux']) == 1){
-		echo "<script>";
-		echo "alert(\"";
-		echo ($_SESSION['player'] === PLAYER_1 ? "Player1" : "Player2")." a perdu\") ";
-		echo "</script>";
-		unset ($_SESSION['gamestate']);
-		unset ($_SESSION['player']);
-		unset ($_SESSION['vaisseaux']);
-	}*/
-	//else {
 		echo "Choisissez un vaisseau svp<br>";
-	//}
 	?>
 <?php }
 else if ($_SESSION['gamestate'] === MOVE){ ?>

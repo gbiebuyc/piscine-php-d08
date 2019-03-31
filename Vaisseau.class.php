@@ -24,6 +24,8 @@ abstract class Vaisseau
 	public $immobile = true;
 	public $dir;
 	public $player;
+	public $animate = false;
+	public $animate_x = 0;
 
 	function __construct($x, $y, $dir, $player) {
 		$this->x = $x;
@@ -37,14 +39,23 @@ abstract class Vaisseau
 	}
 
 	function move($count) {
-		if ($this->dir === UP)
+		if ($this->dir === UP) {
 			$this->y -= $count;
-		else if ($this->dir === DOWN)
+			$this->animate_y = -$count;
+		}
+		else if ($this->dir === DOWN) {
 			$this->y += $count;
-		else if ($this->dir === LEFT)
+			$this->animate_y = $count;
+		}
+		else if ($this->dir === LEFT) {
 			$this->x -= $count;
-		else if ($this->dir === RIGHT)
+			$this->animate_x = -$count;
+		}
+		else if ($this->dir === RIGHT) {
 			$this->x += $count;
+			$this->animate_x = $count;
+		}
+		$this->animate = true;
 	}
 
 	function turn_right() {

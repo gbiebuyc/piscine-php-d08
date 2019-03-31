@@ -5,6 +5,7 @@ session_start();
 ?>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <div style='position: relative'>
@@ -96,9 +97,8 @@ if ($all_activated === true) {
 
 // Display ships
 foreach ($_SESSION['vaisseaux'] as $k => $v) {
-
-	$top = $v->y * SQUARE_WIDTH;
-	$left = $v->x * SQUARE_WIDTH;
+	$top = ($v->y - $v->animate_y) * SQUARE_WIDTH;
+	$left = ($v->x - $v->animate_x) * SQUARE_WIDTH;
 	$width = $v->w * SQUARE_WIDTH;
 	$height = $v->h * SQUARE_WIDTH;
 	$clickable = false;
@@ -112,7 +112,8 @@ foreach ($_SESSION['vaisseaux'] as $k => $v) {
 			$highlighted = true;
 	}
 	$tmp = $clickable ? "<a href='action.php?action=select&ship=$k'>" : "";
-	$tmp .= "<img src='$v->img' style='top:{$top}px; left:{$left}px; width:{$width}px; height:{$height}px; border-radius:3px;";
+	$tmp .= $v->animate ? "<img id='animate' " : "<img ";
+	$tmp .= "src='$v->img' style='top:{$top}px; left:{$left}px; width:{$width}px; height:{$height}px; border-radius:3px;";
 	if ($v->dir === DOWN)
 		$tmp .= " transform: translateY(-100%) rotate(90deg); transform-origin: left bottom;";
 	if ($v->dir === UP)
@@ -123,6 +124,20 @@ foreach ($_SESSION['vaisseaux'] as $k => $v) {
 	$tmp .= "'>";
 	$tmp .= $clickable ? "</a>" : "";
 	echo $tmp;
+	if ($v->animate) { ?>
+		<script>
+		$(document).ready(function(){
+			$('#animate').animate({
+				top: '<?php echo $v->y * SQUARE_WIDTH; ?>px',
+				left: '<?php echo $v->x * SQUARE_WIDTH; ?>px'
+			});
+		});
+		</script> <?php
+		$_SESSION['vaisseaux'][$k]->animate_x = 0;
+		$_SESSION['vaisseaux'][$k]->animate_y = 0;
+		$_SESSION['vaisseaux'][$k]->animate = false;
+	}
+
 }
 ?>
 </div>

@@ -45,3 +45,4 @@ else if ($_GET['action'] === 'attaque'){
 		$_SESSION['gamestate'] = SELECT_SHIP;
 }
 header("Location: index.php");
+?>

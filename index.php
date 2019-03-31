@@ -9,7 +9,55 @@ session_start();
 </head>
 <div style='position: relative'>
 <?php
+// Init game
+if (!isset($_SESSION['gamestate']))
+	$_SESSION['gamestate'] = SELECT_SHIP;
 
+if (!isset($_SESSION['player']))
+	$_SESSION['player'] = PLAYER_1;
+
+if (!isset($_SESSION['vaisseaux'])) {
+	$_SESSION['vaisseaux'] = array();
+//	$_SESSION['vaisseaux'][] = new Vaisseau1(3, 3, RIGHT, PLAYER_1);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(5, 7, RIGHT, PLAYER_1);
+//	$_SESSION['vaisseaux'][] = new Vaisseau1(3, 11, RIGHT, PLAYER_1);
+
+	//$_SESSION['vaisseaux'][] = new Vaisseau1(60, 3, LEFT, PLAYER_2);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(10, 7, LEFT, PLAYER_2);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(11, 11, LEFT, PLAYER_2);
+	//$_SESSION['vaisseaux'][] = new Vaisseau1(140, 95, LEFT, PLAYER_2);
+}
+
+if (isset($_SESSION['vaisseaux'])){
+		$j1 = 0;
+		$j2 = 0;
+		foreach ($_SESSION['vaisseaux'] as $value) {
+			if ($value->pt_coque <= 0);
+				//unset($value);
+			else if ($value->player == PLAYER_1)
+				$j1++;
+			else if ($value->player == PLAYER_2)
+				$j2++;
+		}
+		echo $j1;
+		if ($j1 == 0)
+		{
+			echo "<script>alert('Joueur 2 a gagnée');</script>";
+			unset ($_SESSION['gamestate']);
+			unset ($_SESSION['player']);
+			unset ($_SESSION['vaisseaux']);
+			header("location:victoir.php?player=2");
+		}
+		if ($j2 == 0){
+		echo "<script>alert('Joueur 1 a gagnée');</script>";
+		unset ($_SESSION['gamestate']);
+		unset ($_SESSION['player']);
+		unset ($_SESSION['vaisseaux']);
+		header("location:victoir.php?player=1");
+
+
+			}
+	}
 // Display grid
 echo "<table>";
 for ($i = 0; $i < BOARD_HEIGHT; $i++) {
@@ -20,24 +68,10 @@ for ($i = 0; $i < BOARD_HEIGHT; $i++) {
 }
 echo "</table>";
 
-// Init game
-if (!isset($_SESSION['gamestate']))
-	$_SESSION['gamestate'] = SELECT_SHIP;
 
-if (!isset($_SESSION['player']))
-	$_SESSION['player'] = PLAYER_1;
 
-if (!isset($_SESSION['vaisseaux'])) {
-	$_SESSION['vaisseaux'] = array();
-	$_SESSION['vaisseaux'][] = new Vaisseau1(3, 3, RIGHT, PLAYER_1);
-	$_SESSION['vaisseaux'][] = new Vaisseau1(5, 7, RIGHT, PLAYER_1);
-	$_SESSION['vaisseaux'][] = new Vaisseau1(3, 11, RIGHT, PLAYER_1);
 
-	$_SESSION['vaisseaux'][] = new Vaisseau1(60, 3, LEFT, PLAYER_2);
-	$_SESSION['vaisseaux'][] = new Vaisseau1(10, 7, LEFT, PLAYER_2);
-	$_SESSION['vaisseaux'][] = new Vaisseau1(60, 11, LEFT, PLAYER_2);
-	//$_SESSION['vaisseaux'][] = new Vaisseau1(140, 95, LEFT, PLAYER_2);
-}
+
 // Check si tous les vaisseaux sont activés
 $all_activated = true;
 foreach ($_SESSION['vaisseaux'] as $v) {
@@ -58,6 +92,7 @@ if ($all_activated === true) {
 			unset($_SESSION['vaisseaux'][$k]);
 	}
 }
+
 
 // Display ships
 foreach ($_SESSION['vaisseaux'] as $k => $v) {
@@ -96,8 +131,20 @@ foreach ($_SESSION['vaisseaux'] as $k => $v) {
 </div>
 <div class='userinput'>
 <?php
-if ($_SESSION['gamestate'] === SELECT_SHIP) { ?>
-	Choisissez un vaisseau svp<br>
+if ($_SESSION['gamestate'] === SELECT_SHIP) {
+/*	if (count($_SESSION['vaisseaux']) == 1){
+		echo "<script>";
+		echo "alert(\"";
+		echo ($_SESSION['player'] === PLAYER_1 ? "Player1" : "Player2")." a perdu\") ";
+		echo "</script>";
+		unset ($_SESSION['gamestate']);
+		unset ($_SESSION['player']);
+		unset ($_SESSION['vaisseaux']);
+	}*/
+	//else {
+		echo "Choisissez un vaisseau svp<br>";
+	//}
+	?>
 <?php }
 else if ($_SESSION['gamestate'] === MOVE){ ?>
 <form action="./action.php">

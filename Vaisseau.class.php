@@ -94,7 +94,7 @@ abstract class Vaisseau
 			$dx = $this->x + $this->w + 1;
 			$fx = $this->x + $this->w + 5;
 			while ($dx < $fx){
-				if ($ship->x <= $dx && $dx <= $ship->x + $ship->y && $ship->y <= $this->y && $this->y <= $ship->y + $ship->h && $ship != $this)
+				if ($ship->x <= $dx && $dx <= $ship->x + $ship->y && $ship->y <= $this->y && $this->y <= $ship->y + $ship->w && $ship != $this)
 					$ship->pt_coque--;
 				$dx++;
 		}
@@ -104,29 +104,29 @@ abstract class Vaisseau
 				$dx = $this->x - 1;
 				$fx = $this->x - 5;
 				while ($dx > $fx){
-					if ($ship->x <= $dx && $dx <= $ship->x + $ship->y && $ship->y <= $this->y && $this->y <= $ship->y + $ship->h && $ship != $this)
+					if ($ship->x <= $dx && $dx <= $ship->x + $ship->y && $ship->y <= $this->y && $this->y <= $ship->y + $ship->w && $ship != $this)
 						$ship->pt_coque--;
 					$dx--;
 			}
 		}
 			if ($this->dir == DOWN)
 			{
-					$dy = $this->y - 1;
-					$fy = $this->y - 5;
-					while ($dy > $fy){
-						if ($ship->y <= $dy && $dy <= $ship->y + $ship->y && $this->x > $ship->x  && $ship->x + $ship->h < $this->x&& $ship != $this)
+					$dy = $this->y + $this->w + 1;
+					$fy = $this->y + $this->w + 5;
+					while ($dy < $fy){
+						if ($ship->y <= $dy && $dy <= $ship->y + $ship->h && $ship->x <= $this->x && $this->x <= $ship->x + $ship->w && $ship != $this)
 							$ship->pt_coque--;
-						$dy--;
+						$dy++;
 				}
 		}
 		if ($this->dir == UP)
 		{
-				$dy = $this->y + 1;
-				$fy = $this->y + 5;
-				while ($dy < $fy){
-					if ($ship->y <= $dy && $dy <= $ship->y + $ship->y && $this->x == $ship->x && $ship != $this)
+				$dy = $this->y - 1;
+				$fy = $this->y - 5;
+				while ($dy > $fy){
+					if ($ship->y - $ship->h <= $dy && $dy <= $ship->y  && $ship->x <= $this->x && $this->x <= $ship->x + $ship->w && $ship != $this)
 						$ship->pt_coque--;
-					$dy++;
+					$dy--;
 			}
 	}
 	}

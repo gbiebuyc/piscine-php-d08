@@ -41,7 +41,7 @@ abstract class Vaisseau
 	function move($count) {
 		if ($this->dir === UP) {
 			$this->y -= $count;
-			$this->animate_x = -$count;
+			$this->animate_y = -$count;
 		}
 		else if ($this->dir === DOWN) {
 			$this->y += $count;
@@ -49,7 +49,7 @@ abstract class Vaisseau
 		}
 		else if ($this->dir === LEFT) {
 			$this->x -= $count;
-			$this->animate_y = -$count;
+			$this->animate_x = -$count;
 		}
 		else if ($this->dir === RIGHT) {
 			$this->x += $count;

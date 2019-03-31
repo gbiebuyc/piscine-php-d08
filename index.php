@@ -19,16 +19,16 @@ if (!isset($_SESSION['player']))
 
 if (!isset($_SESSION['vaisseaux'])) {
 	$_SESSION['vaisseaux'] = array();
-//	$_SESSION['vaisseaux'][] = new Vaisseau1(3, 3, RIGHT, PLAYER_1);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(3, 3, RIGHT, PLAYER_1);
 	$_SESSION['vaisseaux'][] = new Vaisseau1(5, 7, RIGHT, PLAYER_1);
-//	$_SESSION['vaisseaux'][] = new Vaisseau1(3, 11, RIGHT, PLAYER_1);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(3, 11, RIGHT, PLAYER_1);
 
-	//$_SESSION['vaisseaux'][] = new Vaisseau1(60, 3, LEFT, PLAYER_2);
-	$_SESSION['vaisseaux'][] = new Vaisseau1(10, 7, LEFT, PLAYER_2);
-	$_SESSION['vaisseaux'][] = new Vaisseau1(11, 11, LEFT, PLAYER_2);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(60, 3, LEFT, PLAYER_2);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(55, 7, LEFT, PLAYER_2);
+	$_SESSION['vaisseaux'][] = new Vaisseau1(60, 11, LEFT, PLAYER_2);
 	//$_SESSION['vaisseaux'][] = new Vaisseau1(140, 95, LEFT, PLAYER_2);
 }
-
+//verification de victoir
 if (isset($_SESSION['vaisseaux'])){
 		$j1 = 0;
 		$j2 = 0;

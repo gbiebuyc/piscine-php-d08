@@ -40,7 +40,6 @@ if (isset($_SESSION['vaisseaux'])){
 			else if ($value->player == PLAYER_2)
 				$j2++;
 		}
-		echo $j1;
 		if ($j1 == 0)
 		{
 			echo "<script>alert('Joueur 2 a gagnée');</script>";

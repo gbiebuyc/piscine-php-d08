@@ -79,7 +79,7 @@ foreach ($_SESSION['vaisseaux'] as $k => $v) {
 	if ($v->dir === DOWN)
 		$tmp .= " transform: translateY(-100%) rotate(90deg); transform-origin: left bottom;";
 	if ($v->dir === UP)
-		$tmp .= " transform: translateY(+400%) rotate(-90deg); transform-origin: left top;";
+		$tmp .= " transform: translateX(-100%) rotate(-90deg); transform-origin: top right;";
 	if ($v->dir === LEFT)
 		$tmp .= " transform: scaleX(-1);";
 	$tmp .= $highlighted ? " box-shadow:0 0 0 3px green;" : "";

@@ -4,11 +4,6 @@ require_once 'globals.php';
 abstract class Vaisseau
 {
 	public $nom;
-	public $top;
-	public $bottom;
-	public $left;
-	public $right;
-	public $sprite;
 	public $pt_coque;
 	public $PP;
 	public $vitesse;
@@ -19,7 +14,6 @@ abstract class Vaisseau
 	public $y;
 	public $w;
 	public $h;
-	public $center;
 	public $activated = false;
 	public $immobile = true;
 	public $dir;
